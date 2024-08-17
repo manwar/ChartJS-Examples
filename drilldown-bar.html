@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Drilldown Chart JS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+	      rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+		  crossorigin="anonymous">
+  </head>
+  <body class="bg-warning py-5">
+	<div class="col-md-6 offset-md-3">
+		<div class="card">
+			<div class="card-body">
+				<h1>Drilldown Chart JS <button class="btn btn-success" onclick="updateChart()">Update</button></h1>
+			</div>
+			<div class="card-body">			
+				<canvas id="myChart"></canvas>
+				<button onclick="resetChart()">Export Data</button>
+			</div>
+		</div>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	
+	<script>
+
+		const browserData = [
+			{
+				browser: 'Chrome',
+				color: 'rgba(75, 192, 192, 1)',
+				users: 150,
+				marksetshare: 80,
+				versionData: [
+					{ version: 'v5', users: 10 },
+					{ version: 'v6', users: 20 },
+					{ version: 'v7', users: 30 },
+					{ version: 'v8', users: 70 },
+					{ version: 'v9', users: 20 }					
+				]
+			},
+			{
+				browser: 'Firefox',
+				color: 'rgba(75, 192, 192, 1)',
+				users: 25,
+				marksetshare: 24,
+				versionData: [
+					{ version: 'v3.1', users: 10 },
+					{ version: 'v3.2', users: 20 },
+					{ version: 'v3.3', users: 5  }
+				]
+			},
+			{
+				browser: 'Safari',
+				color: 'rgba(54, 162, 235, 1)',
+				users: 30,
+				marksetshare: 26,
+				versionData: [
+					{ version: 'Web 9',  users: 10 },
+					{ version: 'Web 10', users: 10 },
+					{ version: 'Web 11', users: 10 }
+				]
+			}
+		];
+
+		const data = {
+			labels: ['Coffee Beans', 'Tea Leaves' ],
+			datasets: [{
+				label: 'Export Data',
+				data: [ 17, 11 ],
+				backgroundColor: [
+					'brown',
+					'green'
+				],
+				borderColor: [
+					'brown',
+					'green'
+				],
+				borderWidth: 1
+			}]
+		};
+		
+		const coffee = {
+			labels: [ 'Brazil', 'Vietnam', 'Colombia' ],
+			datasets: [{
+				label: 'Coffee Bean Export',
+				data: [ 8, 5, 4 ],
+				backgroundColor: 'brown',
+				borderColor: 'brown',
+				borderWidth: 1
+			}]		
+		};
+
+		const tea = {
+			labels: [ 'China', 'India', 'Kenya' ],
+			datasets: [{
+				label: 'Tea Leaves Export',
+				data: [ 6, 4, 1 ],
+				backgroundColor: 'green',
+				borderColor: 'green',
+				borderWidth: 1
+			}]		
+		};
+
+		const config = {
+			type: 'bar',
+			data,
+			options: {
+				//onHover: (event, chartElement) {
+				//},
+				parsing: {
+					'xAxisKey': 'browser',
+					'yAxixKey': 'marketshare'
+				},
+				scales: {
+					y: {
+						beginAtZero: true
+					}
+				}
+			}
+		};
+
+		function clickHandler(click) {
+			const points = myChart.getElementsAtEventForMode(
+				click, 
+				'nearest', 
+				{ intersect: true },
+				true
+			);
+			if (points.length) {
+				const firstPoint = points[0];
+				if (firstPoint.index === 0) {
+					if (myChart.config.data.datasets[0].label != tea.datasets[0].label) {
+						myChart.config.data = coffee;
+					}
+				}
+				if (firstPoint.index === 1) {
+					if (myChart.config.data.datasets[0].label != coffee.datasets[0].label) {
+						myChart.config.data = tea;
+					}
+				}				
+				myChart.update();
+			}	
+		}
+
+		function resetChart() {
+			myChart.config.data = data;
+			myChart.update();
+		}
+	
+		const ctx = document.getElementById('myChart');
+		const myChart = new Chart(ctx, config);
+		ctx.onclick = clickHandler;
+	</script>
+	
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+	        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+			crossorigin="anonymous"></script>
+  </body>
+</html>
