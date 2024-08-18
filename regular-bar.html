@@ -82,29 +82,29 @@
       data,
       options: {
         scales: {
-		  x: {
-			title: {
-			  display: true,
-			  text: 'Earnings per Day',
-			  color: 'blue'
-			},
-			ticks: {
-				callback: function(value, index, values) {
-					return `Sales: ${this.chart.data.labels[index]}`;
-				}
-			}
-		  },
+		      x: {
+			      title: {
+			        display: true,
+			        text: 'Earnings per Day',
+			        color: 'blue'
+			      },
+			      ticks: {
+				      callback: function(value, index, values) {
+					      return `Sales: ${this.chart.data.labels[index]}`;
+				      }
+			      }
+		      },
           y: {
             beginAtZero: true,
-			title: {
-			  display: true,
-			  text: 'Value in $'
-			},
-			ticks: {
-				callback: ((value, index, values) => {
-					return `$ ${value}`;
-				})
-			}
+			      title: {
+			        display: true,
+			        text: 'Value in $'
+			      },
+			      ticks: {
+				      callback: ((value, index, values) => {
+				        return `$ ${value}`;
+				      })
+			      }
           }
         }
       }

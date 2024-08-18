@@ -12,7 +12,7 @@
 	<div class="col-md-6 offset-md-3">
 		<div class="card">
 			<div class="card-body">
-				<h1>Drilldown Chart JS <button class="btn btn-success" onclick="updateChart()">Update</button></h1>
+				<h1>Drilldown Chart JS</h1>
 			</div>
 			<div class="card-body">			
 				<canvas id="myChart"></canvas>
@@ -24,45 +24,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	
 	<script>
-
-		const browserData = [
-			{
-				browser: 'Chrome',
-				color: 'rgba(75, 192, 192, 1)',
-				users: 150,
-				marksetshare: 80,
-				versionData: [
-					{ version: 'v5', users: 10 },
-					{ version: 'v6', users: 20 },
-					{ version: 'v7', users: 30 },
-					{ version: 'v8', users: 70 },
-					{ version: 'v9', users: 20 }					
-				]
-			},
-			{
-				browser: 'Firefox',
-				color: 'rgba(75, 192, 192, 1)',
-				users: 25,
-				marksetshare: 24,
-				versionData: [
-					{ version: 'v3.1', users: 10 },
-					{ version: 'v3.2', users: 20 },
-					{ version: 'v3.3', users: 5  }
-				]
-			},
-			{
-				browser: 'Safari',
-				color: 'rgba(54, 162, 235, 1)',
-				users: 30,
-				marksetshare: 26,
-				versionData: [
-					{ version: 'Web 9',  users: 10 },
-					{ version: 'Web 10', users: 10 },
-					{ version: 'Web 11', users: 10 }
-				]
-			}
-		];
-
 		const data = {
 			labels: ['Coffee Beans', 'Tea Leaves' ],
 			datasets: [{
@@ -106,12 +67,6 @@
 			type: 'bar',
 			data,
 			options: {
-				//onHover: (event, chartElement) {
-				//},
-				parsing: {
-					'xAxisKey': 'browser',
-					'yAxixKey': 'marketshare'
-				},
 				scales: {
 					y: {
 						beginAtZero: true
