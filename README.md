@@ -1,4 +1,4 @@
-#### ChartJS
+#### ChartJS Examples
 
 ##### Demo
 * [Regular Bar](https://manwar.github.io/ChartJS-Examples/regular-bar.html)
