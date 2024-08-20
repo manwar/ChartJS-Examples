@@ -1,6 +1,6 @@
 #### ChartJS Examples
+***
 
-##### Demo
 * [Regular Bar](https://manwar.github.io/ChartJS-Examples/regular-bar.html)
 * [Simple Bar](https://manwar.github.io/ChartJS-Examples/simple-bar.html)
 * [Dynamic Bar](https://manwar.github.io/ChartJS-Examples/dynamic-bar.html)
