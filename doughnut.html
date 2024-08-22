@@ -48,7 +48,7 @@
     </div>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
     <script>
-      // setup 
+      // setup
       const data = {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         datasets: [{
@@ -80,7 +80,7 @@
 		    id: 'doughnutLabel',
 		    beforeDatasetsDraw(chart, args, pluginOptions) {
 			    const { ctx, data } = chart;
-			
+
 			    ctx.save();
 			    const xCoor = chart.getDatasetMeta(0).data[0].x;
 			    const yCoor = chart.getDatasetMeta(0).data[0].y;
@@ -92,7 +92,7 @@
 		    }
 	    };
 
-      // config 
+      // config
       const config = {
         type: 'doughnut',
         data,

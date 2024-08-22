@@ -1,9 +1,9 @@
 <html>
 <head>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
-	      rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	      rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 		  crossorigin="anonymous">
-		  
+
 	<!-- ChartJS -->
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
 </head>
@@ -11,50 +11,36 @@
 <body>
 
 <div class="container">
-    <div class="row my-3">
-        <div class="col">
-            <h4>Bootstrap v5.0.2 / Chart.js v4.4.4</h4>
-        </div>
+  <div class="row my-3">
+    <div class="col">
+      <h4>Bootstrap v5.0.2 / Chart.js v4.4.4</h4>
     </div>
-    <div class="row my-2">
-        <div class="col-md-6 py-1">
-            <div class="card">
-                <div class="card-body">
-                    <canvas id="chLine"></canvas>
-                </div>
-            </div>
+  </div>
+  <div class="row my-2">
+    <div class="col-md-6 py-1">
+      <div class="card">
+        <div class="card-body">
+          <canvas id="chLine"></canvas>
         </div>
-        <div class="col-md-6 py-1">
-            <div class="card">
-                <div class="card-body">
-                    <canvas id="chBar"></canvas>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="row py-2">
-        <div class="col-md-4 py-1">
-            <div class="card">
-                <div class="card-body">
-                    <canvas id="chPi1"></canvas>
-                </div>
-            </div>
+    <div class="col-md-6 py-1">
+      <div class="card">
+        <div class="card-body">
+          <canvas id="chBar"></canvas>
         </div>
-        <div class="col-md-4 py-1">
-            <div class="card">
-                <div class="card-body">
-                    <canvas id="chPi2"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 py-1">
-            <div class="card">
-                <div class="card-body">
-                    <canvas id="chPi3"></canvas>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+  <div class="row my-2">
+    <div class="col-md-6 py-1">
+      <div class="card">
+        <div class="card-body">
+          <canvas id="chPie"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -103,17 +89,17 @@
         data: [589, 445, 483, 503, 689, 692, 634],
         backgroundColor: 'transparent',
         borderColor: colors[0],
-        borderWidth: 2,
         pointBackgroundColor: colors[0],
-	      label: "Line 1"
+        borderWidth: 2,
+        label: "Line 1"
       },
       {
         data: [639, 465, 493, 478, 589, 632, 674],
         backgroundColor: colors[3],
         borderColor: colors[1],
-        borderWidth: 2,
         pointBackgroundColor: colors[1],
-	      label: "Line 2"
+        borderWidth: 2,
+        label: "Line 2"
       }
     ]
   };
@@ -145,7 +131,7 @@
             backgroundColor: colors[0]
           },
           {
-	          label: "Bar 2",	
+	          label: "Bar 2",
             data: [639, 465, 493, 478, 589, 632, 674],
             backgroundColor: colors[1]
           }
@@ -168,120 +154,29 @@
         labels: ['Desktop', 'Phone', 'Tablet', 'Unknown'],
         datasets: [
           {
-            backgroundColor: [colors[1],colors[0],colors[2],colors[5]],
+            backgroundColor: [colors[1],colors[0],colors[2],colors[3]],
             borderWidth: 0,
             data: [50, 40, 15, 5]
           }
         ]
       },
-      plugins: [{
-        beforeDraw: function(chart) {
-          var width = chart.chart.width,
-              height = chart.chart.height,
-              ctx = chart.chart.ctx;
-          ctx.restore();
-          var fontSize = (height / 70).toFixed(2);
-          ctx.font = fontSize + "em sans-serif";
-          ctx.textBaseline = "middle";
-          var text = chart.config.data.datasets[0].data[0] + "%",
-              textX = Math.round((width - ctx.measureText(text).width) / 2),
-              textY = height / 2;
-          ctx.fillText(text, textX, textY);
-          ctx.save();
-        }
-      }],
       options: {
         layout:{
           padding: 0
-        }, 
+        },
         legend: {
           display: false
-        }, 
+        },
         cutoutPercentage: 80
       }
     });
   }
 
-  /* Pi Chart Options */
-  var piOptions = {
-    cutoutPercentage: 85, 
-    legend: {
-      position: 'bottom', 
-      padding: 5, 
-      labels: {
-        pointStyle: 'circle', 
-        usePointStyle: true
-      }
-    }
-  };
-
-  // Pi Chart Data 1
-  var chPiData1 = {
-    labels: ['Bootstrap', 'Popper', 'Other'],
-    datasets: [
-      {
-        backgroundColor: colors.slice(0,3),
-        borderWidth: 0,
-        data: [74, 11, 40]
-      }
-    ]
-  };
-
-  var chPi1 = document.getElementById("chPi1");
-  if (chPi1) {
-    new Chart(chPi1, {
-      type: 'pie',
-      data: chPiData1,
-      options: piOptions
-    });
-  }
-
-  // Pi Chart Data 2
-  var chPiData2 = {
-    labels: ['Wips', 'Pops', 'Dags'],
-    datasets: [
-      {
-        backgroundColor: colors.slice(0,3),
-        borderWidth: 0,
-        data: [40, 45, 30]
-      }
-    ]
-  };
-
-  var chPi2 = document.getElementById("chPi2");
-  if (chPi2) {
-    new Chart(chPi2, {
-      type: 'pie',
-      data: chPiData2,
-      options: piOptions
-    });
-  }
-
-  // Pi Chart Data 3
-  var chPiData3 = {
-    labels: ['Angular', 'React', 'Other'],
-    datasets: [
-      {
-        backgroundColor: colors.slice(0,3),
-        borderWidth: 0,
-        data: [21, 45, 55, 33]
-      }
-    ]
-  };
-  var chPi3 = document.getElementById("chPi3");
-  if (chPi3) {
-    new Chart(chPi3, {
-      type: 'pie',
-      data: chPiData3,
-      options: piOptions
-    });
-  }
-
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
-		    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

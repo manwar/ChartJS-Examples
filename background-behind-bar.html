@@ -48,7 +48,7 @@
     </div>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
     <script>
-    // setup 
+    // setup
     const data = {
       labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       datasets: [{
@@ -76,11 +76,11 @@
 		id: 'backgroundBar',
 		beforeDatasetsDraw(chart, args, pluginOptions) {
 			const { data, ctx, chartArea: {top, bottom, left, right, width, height }, scales: { x, y } } = chart;
-			
+
 			ctx.save();
 			const segment = width / data.labels.length;
 			const barWidth = segment * data.datasets[0].barPercentage * data.datasets[0].categoryPercentage;
-			
+
 			ctx.fillStyle = pluginOptions.barColor;
 			for(let i = 0; i < data.labels.length; i++) {
 				ctx.fillRect(x.getPixelForValue(i) - barWidth / 2, top, barWidth, height);
@@ -88,7 +88,7 @@
 		}
 	};
 
-    // config 
+    // config
     const config = {
       type: 'bar',
       data,
