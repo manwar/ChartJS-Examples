@@ -15,4 +15,4 @@
 * [Animation Doughnut](https://manwar.github.io/ChartJS-Examples/animation-doughnut.html)
 
 ##### Bootstrap/ChartJS
-* [Line/Bar/Pi](https://manwar.github.io/ChartJS-Examples/bootstrap-chartjs.html)
+* [Line/Bar/Pie](https://manwar.github.io/ChartJS-Examples/bootstrap-chartjs.html)
